@@ -23,8 +23,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
-
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
@@ -32,6 +30,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define LEDSLOW_Pin GPIO_PIN_0
+#define LEDSLOW_GPIO_Port GPIOC
+#define LEDMEDIUM_Pin GPIO_PIN_1
+#define LEDMEDIUM_GPIO_Port GPIOC
+#define LEDFAST_Pin GPIO_PIN_2
+#define LEDFAST_GPIO_Port GPIOC
+/* USER CODE END Includes */
 
 /* USER CODE END PD */
 
@@ -264,7 +269,8 @@ void StartLEDSTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	HAL_GPIO_TogglePin(GPIOC, LEDSLOW_Pin);
+    osDelay(1000);
   }
   /* USER CODE END 5 */
 }
@@ -282,7 +288,8 @@ void StartLEDMTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  HAL_GPIO_TogglePin(GPIOC, LEDMEDIUM_Pin);
+	  osDelay(500);
   }
   /* USER CODE END StartLEDMTask */
 }
@@ -300,7 +307,8 @@ void StartLEDFTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  HAL_GPIO_TogglePin(GPIOC, LEDFAST_Pin);
+	  osDelay(250);
   }
   /* USER CODE END StartLEDFTask */
 }
